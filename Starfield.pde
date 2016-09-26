@@ -1,15 +1,32 @@
-//your code here
 void setup()
 {
-	//your code here
+	size(500, 500);
 }
 void draw()
 {
-	//your code here
+	if(mousePressed)
+	{
+		noStroke();
+		fill(0, 0, 0, 10);
+		rect(0, 0, 500, 500);
+	}
+	else
+	{
+		background(0);
+	}
 }
 class NormalParticle
 {
-	//your code here
+	double myX, myY, speed, angle;
+	int myColor;
+	NormalParticle()
+	{
+		myX = Math.random() * 500;
+		myY = Math.random() * 500;
+		speed = 10;
+		angle = theta;
+		myColor = color((Math.random() * 255, Math.random() * 255, Math.random() * 255));
+	}
 }
 interface Particle
 {
