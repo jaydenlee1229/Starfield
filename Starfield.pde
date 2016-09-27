@@ -1,6 +1,12 @@
+Particle[] particles;
 void setup()
 {
 	size(500, 500);
+	particles = new Particle[30];
+	for(int i = 0; i < particles.length; i++)
+	{
+		particles[i] = new NormalParticle();
+	}
 }
 void draw()
 {
@@ -24,20 +30,38 @@ class NormalParticle
 		myX = Math.random() * 500;
 		myY = Math.random() * 500;
 		speed = 10;
-		angle = theta;
-		myColor = color((Math.random() * 255, Math.random() * 255, Math.random() * 255));
+		angle = 0;;
+		myColor = color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
 	}
 }
-interface Particle
+class Particle
 {
-	//your code here
+	public void show();
+	public void move();
 }
-class OddballParticle //uses an interface
+class OddballParticle implements Particle //uses an interface
 {
-	//your code here
+	double myX, myY, speed, angle;
+	int myColor;
+	OddballParticle()
+	{
+		myX = Math.random() * 500;
+		myY = Math.random() * 500;
+		speed = 10;
+		angle = 0;;
+		myColor = color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
+	}
 }
-class JumboParticle //uses inheritance
+class JumboParticle implements Particle //uses inheritance
 {
-	//your code here
+	double myX, myY, speed, angle;
+	int myColor;
+	JumboParticle()
+	{
+		myX = Math.random() * 500;
+		myY = Math.random() * 500;
+		speed = 10;
+		angle = 0;;
+		myColor = color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
+	}
 }
-
