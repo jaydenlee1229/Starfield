@@ -5,7 +5,6 @@ void setup()
 	for(int i = 0; i < particles.length; i++)
 	{
 		particles[i] = new OddballParticle();
-
 	}
 }
 void draw()
@@ -70,9 +69,8 @@ class OddballParticle implements Particle //uses an interface
 	}
 	public void move()
 	{
-		myX += 10 * Math.cos(angle);
-		myY += 10 * Math.sin(angle);
-		angle += 0.5;
+		myX += 10;
+		myY += 10;
 	}
 }
 class JumboParticle implements Particle //uses inheritance
@@ -94,7 +92,6 @@ class JumboParticle implements Particle //uses inheritance
 	}
 	public void move()
 	{
-		angle += 0.2;
 		myX += 5;
 		myY += 5;
 	}
