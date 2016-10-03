@@ -4,32 +4,35 @@ void setup()
 	size(500, 500);
 	for(int i = 0; i < particles.length; i++)
 	{
-		particles[i] = new OddballParticle();
+		particles[i] = new NormalParticle();
 	}
+	noLoop();
 }
 void draw()
 {
 	background(0);
-	if(mousePressed)
+	noStroke();
+	fill(0, 0, 0, 10);
+	rect(0, 0, 500, 500);
+	for(int i = 0; i < particles.length; i++)
 	{
-		noStroke();
-		fill(0, 0, 0, 10);
-		rect(0, 0, 500, 500);
-		for(int i = 0; i < particles.length; i++)
-		{
-			particles[i].show();
-			particles[i].move();
-		}
+		particles[i].show();
+		particles[i].move();
+		
 	}
 }
-class NormalParticle
+void mousePressed()
+{
+	loop();
+}
+class NormalParticle implements Particle
 {
 	double myX, myY, speed, angle;
 	int myColor;
 	NormalParticle()
 	{
-		myX = Math.random() * 500;
-		myY = Math.random() * 500;
+		myX = (Math.random() * 2 + 249);
+		myY = (Math.random() * 2 + 249);
 		speed = 10;
 		angle = 0;;
 		myColor = color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
@@ -41,8 +44,22 @@ class NormalParticle
 	}
 	public void move()
 	{
-		myX += 5;
-		myY += 5;
+		if(myX <= 250)
+		{
+			myX -= 1;
+		}
+		if(myX > 250)
+		{
+			myX += 1;
+		}
+		if(myY <= 250)
+		{
+			myY -= 1;
+		}
+		if(myY > 250)
+		{
+			myY += 1;
+		}
 	}
 }
 interface Particle
