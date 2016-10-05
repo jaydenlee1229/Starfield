@@ -1,31 +1,31 @@
-Particle[] particles = new Particle[30];
+Particle[] particles = new Particle[50];
 void setup()
 {
 	size(500, 500);
+	background(0);
 	for(int i = 0; i < particles.length; i++)
 	{
 		particles[i] = new NormalParticle();
 	}
 	particles[0] = new OddballParticle();
 	particles[1] = new JumboParticle();
-	noLoop();
 }
 void draw()
 {
-	background(0);
-	noStroke();
-	fill(0, 0, 0, 10);
-	rect(0, 0, 500, 500);
-	for(int i = 0; i < particles.length; i++)
+	if(mousePressed)
 	{
-		particles[i].show();
-		particles[i].move();	
+		noStroke();
+		fill(0, 0, 0, 10);
+	 	rect(0, 0, 500, 500);
+		for(int i = 0; i < particles.length; i++)
+		{
+			particles[i].show();
+			particles[i].move();	
+		}
+		fill(0, 0, 0, 50);
+	 	rect(0, 0, 500, 500);
+	 	}
 	}
-}
-void mousePressed()
-{
-	loop();
-}
 interface Particle
 {
 	public void show();
@@ -40,7 +40,7 @@ class NormalParticle implements Particle
 		myX = 250;
 		myY = 250;
 		mySize = 1.0;
-		speed = (Math.random() - 0.5) * 10 + 1;
+		speed = (Math.random() - 0.5) * 20 + 1;
 		angle = Math.random() * 2 * PI - PI;;
 		myColor = color((int)(Math.random() * 255), (int)(myY), (int)(myX));
 	}
@@ -87,7 +87,7 @@ class OddballParticle implements Particle
 		myX = 250;
 		myY = 250;
 		mySize = 1.0;
-		speed = Math.random() * 1 + 1;
+		speed = Math.random() * 3 + 1;
 		angle = Math.random() * 2 * PI;;
 		myColor = color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
 	}
