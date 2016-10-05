@@ -33,70 +33,87 @@ interface Particle
 }
 class NormalParticle implements Particle
 {
-	double myX, myY, speed, angle;
+	double myX, myY, mySize, speed, angle;
 	int myColor;
 	NormalParticle()
 	{
 		myX = 250;
 		myY = 250;
-		speed = Math.random() * 8 + 1;
-		angle = Math.random() * 2 * PI;;
-		myColor = color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
+		mySize = 1.0;
+		speed = (Math.random() - 0.5) * 10 + 1;
+		angle = Math.random() * 2 * PI - PI;;
+		myColor = color((int)(Math.random() * 255), (int)(myY), (int)(myX));
 	}
 	public void show()
 	{
-		fill(255);
-		ellipse((float)(myX), (float)(myY), 20.0, 20.0);
+		fill(myColor);
+		ellipse((float)(myX), (float)(myY), (float)mySize, (float)mySize);
+		mySize += (Math.abs(myX - 250)) / 250;
+		if(mySize > 10)
+		{
+			mySize = 10;
+		}
 	}
 	public void move()
 	{
+		boolean direction = true;
+		if(Math.abs(myX - 250) < 250 && Math.abs(myY - 250) < 250)
+		{
+			direction = true;
+		}
+		if(direction == true)
+		{
 			myX += speed * cos((int)(angle));
 			myY += speed * sin((int)(angle));
+		}
+		if(Math.abs(myX - 250) > 250 && Math.abs(myY - 250) > 250)
+		{
+			direction = false;
+		}
+		if(direction == false)
+		{
+			myX = 250;
+			myY = 250;
+			mySize = 1;
+		}
 	}
 }
-class OddballParticle implements Particle //uses an interface
+class OddballParticle implements Particle
 {
-	double myX, myY, speed, angle;
+	double myX, myY, mySize, speed, angle;
 	int myColor;
 	OddballParticle()
 	{
 		myX = 250;
 		myY = 250;
-		speed = Math.random() * 8 + 1;
+		mySize = 1.0;
+		speed = Math.random() * 1 + 1;
 		angle = Math.random() * 2 * PI;;
 		myColor = color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
 	}
 	public void show()
 	{
-		fill(255);
-		ellipse((float)(myX), (float)(myY), 20.0, 20.0);
+		fill(myColor);
+		ellipse((float)(myX), (float)(myY), (float)mySize, (float)mySize);
+		mySize += (Math.abs(myX - 250)) / 250;
+		if(mySize > 10)
+		{
+			mySize = 10;
+		}
 	}
 	public void move()
 	{
 		myX += speed * cos((int)(angle));
 		myY += speed * sin((int)(angle));
+		angle += 0.01;
 	}
 }
-class JumboParticle implements Particle //uses inheritance
+class JumboParticle extends NormalParticle
 {
-	double myX, myY, speed, angle;
-	int myColor;
-	JumboParticle()
-	{
-		myX = 250;
-		myY = 250;
-		speed = Math.random() * 8 + 1;
-		angle = Math.random() * 2 * PI;;
-		myColor = color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
-	}
 	public void show()
 	{
-		fill(255);
-		ellipse((float)(myX), (float)(myY), 50.0, 50.0);
-	}
-	public void move()
-	{
-		myX += speed * cos((int)(angle));
-		myY += speed * sin((int)(angle));
+		fill(myColor);
+		ellipse((float)(myX), (float)(myY), (float)(mySize) + 20.0, (float)(mySize) + 20.0);
+		mySize += (Math.abs(myX - 250)) / 250;
 	}
 }
