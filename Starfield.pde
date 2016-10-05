@@ -15,17 +15,15 @@ void draw()
 	if(mousePressed)
 	{
 		noStroke();
-		fill(0, 0, 0, 10);
-	 	rect(0, 0, 500, 500);
+		fill(0, 0, 0, 20);
+		 rect(0, 0, 500, 500);
 		for(int i = 0; i < particles.length; i++)
 		{
 			particles[i].show();
 			particles[i].move();	
 		}
-		fill(0, 0, 0, 50);
-	 	rect(0, 0, 500, 500);
-	 	}
 	}
+}
 interface Particle
 {
 	public void show();
@@ -87,7 +85,7 @@ class OddballParticle implements Particle
 		myX = 250;
 		myY = 250;
 		mySize = 1.0;
-		speed = Math.random() * 3 + 1;
+		speed = Math.random() * 2 + 1;
 		angle = Math.random() * 2 * PI;;
 		myColor = color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
 	}
@@ -115,5 +113,9 @@ class JumboParticle extends NormalParticle
 		fill(myColor);
 		ellipse((float)(myX), (float)(myY), (float)(mySize) + 20.0, (float)(mySize) + 20.0);
 		mySize += (Math.abs(myX - 250)) / 250;
+		if(mySize > 10)
+		{
+			mySize = 10;
+		}
 	}
 }
