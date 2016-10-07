@@ -3,14 +3,14 @@ void setup()
 {
 	size(500, 500);
 	background(0);
+	mouseX = 250;
+	mouseY = 250;
 	for(int i = 0; i < particles.length; i++)
 	{
 		particles[i] = new NormalParticle();
 	}
 	particles[0] = new OddballParticle();
 	particles[1] = new JumboParticle();
-	//mouseX = 250;
-	//mouseY = 250;
 }
 void draw()
 {
@@ -95,7 +95,7 @@ class OddballParticle implements Particle
 	{
 		fill(myColor);
 		ellipse((float)(myX), (float)(myY), (float)mySize, (float)mySize);
-		mySize += (Math.abs(myX - 250)) / 250;
+		mySize += (2);
 		if(mySize > 10)
 		{
 			mySize = 10;
